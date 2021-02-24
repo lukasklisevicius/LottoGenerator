@@ -2,6 +2,7 @@ package com.example.kliseviciusrandomgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         result = findViewById((R.id.result));
 
         btn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 try {
@@ -36,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
                     Integer num2 = Integer.parseInt(inputText2.getText().toString());
                     Integer num3 = Integer.parseInt(inputText3.getText().toString());
                     Integer[] ats = randomGenerator(num1,num2,num3);
-                    result.setText("Your lucky numbers: " + Arrays.toString(ats));
+                    String atsString = Arrays.toString(ats);
+                    result.setText("Your lucky numbers: \n" + atsString.replaceAll("\\p{P}",""));
                 }catch (NumberFormatException ignored){
 
                 }
